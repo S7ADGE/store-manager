@@ -19,6 +19,19 @@ def getnum(name = "Value", low = -9.9e100, high = 9.9e100, Type = float):
 
             print(" Invalid number... Please try again.")
 
+#=================================Validates user input for yes or no responses.=================================
+
+def yes_or_no(prompt):
+
+    ans = input(prompt).lower()
+
+    while ans not in ["y", "n"]:
+        
+        print("Please enter 'y' or 'n'")
+        ans = input(prompt).lower()
+
+    return ans
+
 #=================================Validates customer information input and checks for duplicates ID=================================
 
 ID_list = []
@@ -102,13 +115,8 @@ def getitems():
         ITEM = getitem(items, materials)
         item_list.append(ITEM)
         materials.append(ITEM["Item"])
-        ans = input("\t\t Continue for item (y | n) : ").lower()
+        ans = yes_or_no("\t\t Continue for item (y | n) : ")
         
-        while ans not in ["y", "n"]:
-
-            print("Please enter 'y' or 'n'")
-            ans = input("\t\t Continue for item (y | n) : ").lower()
-
     return item_list
 
 #=================================Generate invoice for the customer=================================
@@ -133,13 +141,7 @@ def customers():
 
         invoice = generate_invoice()
         all_invoices.append(invoice)
-        next_user = input("\nDo you want to register another customer? (y/n): ").lower()
-        
-        while next_user not in ["y", "n"]:
-            
-            print("Please enter 'y' or 'n'")
-            next_user = input("Do you want to register another customer? (y/n): ").lower()
-
+        next_user = yes_or_no("\nDo you want to register another customer? (y/n): ")
         if next_user == "n":
                 
             break
@@ -183,24 +185,3 @@ def customers():
 #=================================Call customers()=================================
 
 customers()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
