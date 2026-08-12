@@ -1,23 +1,30 @@
 #=================================Validates user input for numbers within a specified range and type.=================================
 
-def getnum(name = "Value", low = -9.9e100, high = 9.9e100, Type = float):
+def givenum(name = "Value", low = -9.9e100, high = 9.9e100, Type =float):
 
     while True:
 
         try:
 
-            x = Type(input(name + " : "))
+            x = Type(input((f"{name} : ")))
 
-            if x >= low and x <= high:    
-                return x
-            
+            if Type != str:
+
+                if x >= low and x <= high:
+                    return x
+
+                else:
+
+                    print("Out of range ! ", low, "to", high)
+
             else:
 
-                print("Out of range ! ", low, "to", high)
-        
+                float(x)
+                return x
+
         except:
 
-            print(" Invalid number... Please try again.")
+            print(" Invalid number...")
 
 #=================================Validates user input for yes or no responses.=================================
 
@@ -38,12 +45,12 @@ ID_list = []
 
 def getinfo():
 
-    ID = getnum("Enter the customer's ID", 1000, 9999, int) #---Example of ID range from 1000 to 9999, you can change it as you want---
+    ID = givenum("Enter the customer's ID", Type = str)
 
     while ID in ID_list:
         
         print("ID already exist !")
-        ID = getnum("Enter the customer's ID", 1000, 9999, int)
+        ID = givenum("Enter the customer's ID", Type = str)
         
     ID_list.append(ID)
 
@@ -94,8 +101,8 @@ def getitem(items, materials):
             
             break 
 
-    unit = getnum("Enter the unit of item", 1, Type = int)
-    price = getnum("Enter the price of item ($)", 1)
+    unit = givenum("Enter the unit of item", 1, Type = int)
+    price = givenum("Enter the price of item ($)", 1)
     return {
         "Item":item, 
         "Unit":unit, 
