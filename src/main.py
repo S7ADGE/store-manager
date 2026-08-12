@@ -68,16 +68,31 @@ def info():
     
     return list(getinfo().values())
 
+#=================================Collect available items in the store=================================
+
+items = []
+
+def getitem():
+
+    ans = "y"
+
+    while ans == "y":
+
+        item = input("Enter the item availbale in your store : ").lower()
+        ans = yes_or_no("\t\t\t Continue for item ? (y | n) : ")
+        items.append(item)
+
+    return items
+
 #=================================Collect the items purchased by the customer, along with their quantities and prices=================================
+available_items = getitem()
 
-items = ["cpu", "gpu", "mb", "ram", "ssd", "fan", "case"] #---Example of available items in store, you can change it as you want---
-
-def getitem(items, materials):
+def selectitem(materials):
 
     print ("\n_____________________________________________________\n")
     print ( "\t---   AVAILABLE ITEMS IN STORE   --- \n")
 
-    for h in items :
+    for h in available_items :
 
         print ( h , end= "\t" )
    
@@ -92,7 +107,7 @@ def getitem(items, materials):
             print("Item already exists in your cart!")
             continue
         
-        elif item not in items:
+        elif item not in available_items:
             
             print("\tThis item is not available in store!")
             continue
@@ -103,6 +118,7 @@ def getitem(items, materials):
 
     unit = givenum("Enter the unit of item", 1, Type = int)
     price = givenum("Enter the price of item ($)", 1)
+
     return {
         "Item":item, 
         "Unit":unit, 
@@ -111,7 +127,7 @@ def getitem(items, materials):
 
 #=================================Returns the list of items purchased by the customer=================================
 
-def getitems():
+def selectitems():
     
     item_list = []
     materials = []
@@ -119,7 +135,7 @@ def getitems():
 
     while ans == "y":
 
-        ITEM = getitem(items, materials)
+        ITEM = selectitem(materials)
         item_list.append(ITEM)
         materials.append(ITEM["Item"])
         ans = yes_or_no("\t\t Continue for item (y | n) : ")
@@ -131,7 +147,7 @@ def getitems():
 def generate_invoice():
     
     customer_info = info()
-    customer_cart = getitems()
+    customer_cart = selectitems()
     
     return {
         "customer": customer_info,
