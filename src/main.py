@@ -22,7 +22,7 @@ def givenum(name = "Value", low = -9.9e100, high = 9.9e100, Type =float):
                 float(x)
                 return x
 
-        except:
+        except ValueError:
 
             print(" Invalid number...")
 
