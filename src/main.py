@@ -111,7 +111,7 @@ def selectitem(materials):
             
             print("\tThis item is not available in store!")
             continue
-        
+
         else:
             
             break 
@@ -138,6 +138,12 @@ def selectitems():
         ITEM = selectitem(materials)
         item_list.append(ITEM)
         materials.append(ITEM["Item"])
+
+        if sorted(materials) == sorted(available_items):
+            
+            print("\n\t~~~~~~~ All available items have been added to the cart! ~~~~~~~\n")
+            break
+        
         ans = yes_or_no("\t\t Continue for item (y | n) : ")
         
     return item_list
