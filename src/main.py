@@ -70,7 +70,7 @@ def info():
 
 #=================================Collect available items in the store=================================
 
-items = []
+items = {}
 
 def getitem():
 
@@ -91,9 +91,10 @@ def getitem():
 
                 break
 
+        price = givenum("Enter the price of the item ($)", 1)
+        items[item] = price
         ans = yes_or_no("\t\t\t Continue for item ? (y | n) : ")
-        items.append(item)
-
+        
     return items
 
 #=================================Collect the items purchased by the customer, along with their quantities and prices=================================
@@ -105,9 +106,9 @@ def selectitem(materials):
     print ("\n__________________________________________________________\n")
     print ( "\t  ---   AVAILABLE ITEMS IN STORE   --- \n")
 
-    for h in available_items :
+    for item, price in available_items.items() :
 
-        print ( h , end= "\t" )
+        print ( f"{item}: ${price:.2f}" , end= "\t" )
    
     print ("\n\n__________________________________________________________\n")
     
@@ -130,8 +131,7 @@ def selectitem(materials):
             break 
 
     unit = givenum("Enter the unit of item", 1, Type = int)
-    price = givenum("Enter the price of item ($)", 1)
-
+    
     return {
         "Item":item, 
         "Unit":unit, 
