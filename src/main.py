@@ -30,12 +30,12 @@ def givenum(name = "Value", low = -9.9e100, high = 9.9e100, Type =float):
 
 def yes_or_no(prompt):
 
-    ans = input(prompt).lower()
+    ans = input(prompt).lower().replace(" ", "")
 
     while ans not in ["y", "n"]:
         
         print("Please enter 'y' or 'n'")
-        ans = input(prompt).lower()
+        ans = input(prompt).lower().replace(" ", "")
 
     return ans
 
@@ -54,8 +54,8 @@ def getinfo():
         
     ID_list.append(ID)
 
-    name = input("Enter the customer's name : ")
-    family = input("Enter the customer's family : ")
+    name = input("Enter the customer's name : ").replace(" ", "").title()
+    family = input("Enter the customer's family : ").replace(" ", "").title()
     return {
             "ID":ID, 
             "Name":name, 
@@ -78,29 +78,30 @@ def getitem():
 
     while ans == "y":
 
-        item = input("Enter the item availbale in your store : ").lower()
+        item = input("Enter the item availbale in your store : ").title()
         ans = yes_or_no("\t\t\t Continue for item ? (y | n) : ")
         items.append(item)
 
     return items
 
 #=================================Collect the items purchased by the customer, along with their quantities and prices=================================
+
 available_items = getitem()
 
 def selectitem(materials):
 
-    print ("\n_____________________________________________________\n")
-    print ( "\t---   AVAILABLE ITEMS IN STORE   --- \n")
+    print ("\n__________________________________________________________\n")
+    print ( "\t  ---   AVAILABLE ITEMS IN STORE   --- \n")
 
     for h in available_items :
 
         print ( h , end= "\t" )
    
-    print ("\n\n_____________________________________________________\n")
+    print ("\n\n__________________________________________________________\n")
     
     while True:
         
-        item = input("Enter the item : ").lower()
+        item = input("Enter the item : ").title()
         
         if item in materials:
             
@@ -197,10 +198,10 @@ def customers():
             total_units += i["Unit"]
             total_cost += line_total
             item_sales[i["Item"]] = item_sales.get(i["Item"], 0) + line_total
-            print(i["Item"], "%9.0f"%i["Unit"], "%9.2f"%i["Price"], "%9.2f"%(i["Price"] * i["Unit"]), sep = "\t")
+            print(i["Item"], "%10.0f"%i["Unit"], "%10.2f"%i["Price"], "%10.2f"%(i["Price"] * i["Unit"]), sep = "\t")
         
         print ("\n__________________________________________________________\n")
-        print("items", "%9.0f"%total_units, "\tcost", "%9.2f"%total_cost, sep = "\t")
+        print("items", "%10.0f"%total_units, "\tcost", "%10.2f"%total_cost, sep = "\t")
         print("\n\n")
 
     print("\n==========================================================")
@@ -209,7 +210,7 @@ def customers():
 
     for item, amount in item_sales.items():
 
-        print(item,"\t:\t", "%9.2f"%amount)
+        print(item,"\t:\t", "%10.2f"%amount)
 
 #=================================Call customers()=================================
 
