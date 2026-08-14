@@ -78,7 +78,19 @@ def getitem():
 
     while ans == "y":
 
-        item = input("Enter the item availbale in your store : ").title()
+        while True:
+
+            item = input("Enter the item availbale in your store : ").title()
+
+            if item in items:
+                
+                print("This item has already been added!")
+                continue
+
+            else:
+
+                break
+
         ans = yes_or_no("\t\t\t Continue for item ? (y | n) : ")
         items.append(item)
 
