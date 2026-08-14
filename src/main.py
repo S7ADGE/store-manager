@@ -1,4 +1,10 @@
-#=================================Validates user input for numbers within a specified range and type.=================================
+# ==================================================
+# Validates user input for numbers or strings.
+# For numeric types, the entered value must
+# be within the specified minimum and maximum range.
+# For string type, the input is validated by
+# checking whether it can be converted to a float.
+# ==================================================
 
 def givenum(name = "Value", low = -9.9e100, high = 9.9e100, Type =float):
 
@@ -26,7 +32,12 @@ def givenum(name = "Value", low = -9.9e100, high = 9.9e100, Type =float):
 
             print(" Invalid number...")
 
-#=================================Validates user input for yes or no responses.=================================
+# ============================================
+# Validates user input for Yes/No questions.
+# Converts the input to lowercase and removes
+# spaces, then keeps asking until the user
+# enters either 'y' or 'n'.
+# ============================================
 
 def yes_or_no(prompt):
 
@@ -39,9 +50,22 @@ def yes_or_no(prompt):
 
     return ans
 
-#=================================Validates customer information input and checks for duplicates ID=================================
+# =======================================
+# Stores all registered customer IDs.
+# Used to prevent duplicate customer IDs
+# during customer registration.
+# =======================================
 
 ID_list = []
+
+# ===========================================
+# Collects customer information.
+# - Gets a unique customer ID.
+# - Checks the ID against existing IDs.
+# - Stores the new ID in ID_list.
+# - Gets the customer's name and family name.
+# - Returns the information as a dictionary.
+# ===========================================
 
 def getinfo():
 
@@ -62,15 +86,31 @@ def getinfo():
             "Family":family 
            }
 
-#=================================Returns customer information=================================
 
+# ===================================
+# Returns the customer's information
+# as a list of dictionary values.
+# ===================================
 def info():
     
     return list(getinfo().values())
 
-#=================================Collect available items in the store=================================
+# ==========================================
+# Stores the items available in the store.
+# Each item is stored as a key and its price
+# is stored as the corresponding value.
+# ==========================================
 
 items = {}
+
+# ==========================================
+# Collects available items and their prices.
+# - Gets the item name from the user.
+# - Prevents duplicate items.
+# - Gets and validates the item price.
+# - Continues until the user chooses 'n'.
+# - Returns the store inventory dictionary.
+# ==========================================
 
 def getitem():
 
@@ -97,9 +137,21 @@ def getitem():
         
     return items
 
-#=================================Collect the items purchased by the customer, along with their quantities and prices=================================
+# ====================================
+# Gets the complete list of available
+# items from the store inventory.
+# ====================================
 
 available_items = getitem()
+
+# ==============================================
+# Selects a single item for the customer's cart.
+# - Displays all available items and prices.
+# - Checks whether the selected item exists.
+# - Prevents duplicate items in the cart.
+# - Gets the quantity of the selected item.
+# - Returns the item, quantity, and price.
+# ==============================================
 
 def selectitem(materials):
 
@@ -138,7 +190,14 @@ def selectitem(materials):
         "Price":price
            }
 
-#=================================Returns the list of items purchased by the customer=================================
+# ===============================================
+# Collects all items purchased by a customer.
+# - Creates an empty shopping cart.
+# - Allows the customer to select multiple items.
+# - Prevents duplicate items.
+# - Stops if all available items are selected.
+# - Returns the customer's complete item list.
+# ===============================================
 
 def selectitems():
     
@@ -161,7 +220,15 @@ def selectitems():
         
     return item_list
 
-#=================================Generate invoice for the customer=================================
+# ==========================================
+# Generates an invoice for one customer.
+#
+# The invoice contains:
+# - Customer information
+# - Customer's purchased items
+#
+# Returns both sections inside a dictionary.
+# ==========================================
 
 def generate_invoice():
     
@@ -173,7 +240,15 @@ def generate_invoice():
         "cart": customer_cart
            }
 
-#=================================Manage customer registration and invoicing=================================
+# ============================================
+# Manages customer registration and invoicing.
+# - Registers multiple customers if requested.
+# - Generates an invoice for each customer.
+# - Stores all invoices.
+# - Prints every customer's bill.
+# - Calculates total units and total cost.
+# - Calculates total sales for each item.
+# ============================================
 
 def customers():
 
@@ -224,6 +299,9 @@ def customers():
 
         print(item,"\t:\t", "%10.2f"%amount)
 
-#=================================Call customers()=================================
+# =================================
+# Starts the customer registration
+# and invoice generation system.
+# =================================
 
 customers()
