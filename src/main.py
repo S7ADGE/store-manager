@@ -21,7 +21,7 @@ def givenum(name = "Value", low = -9.9e100, high = 9.9e100, Type =float):
 
                 else:
 
-                    print("Out of range ! ", low, "to", high)
+                    print("\tOut of range ! ", low, "to", high)
 
             else:
 
@@ -30,7 +30,7 @@ def givenum(name = "Value", low = -9.9e100, high = 9.9e100, Type =float):
 
         except ValueError:
 
-            print(" Invalid number...")
+            print("\tInvalid number...")
 
 # ============================================
 # Validates user input for Yes/No questions.
@@ -81,6 +81,7 @@ def getinfo():
     name = input("Enter the customer's name : ").replace(" ", "").title()
     family = input("Enter the customer's family : ").replace(" ", "").title()
     return {
+            "number":str(len(ID_list)) + ".",
             "ID":ID, 
             "Name":name, 
             "Family":family 
@@ -124,7 +125,7 @@ def getitem():
 
             if item in items:
                 
-                print("This item has already been added!")
+                print("\tThis item has already been added!")
                 continue
 
             else:
@@ -170,7 +171,7 @@ def selectitem(materials):
         
         if item in materials:
             
-            print("Item already exists in your cart!")
+            print("\tItem already exists in your cart!")
             continue
         
         elif item not in available_items:
