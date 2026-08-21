@@ -184,6 +184,7 @@ def selectitem(materials):
             break 
 
     unit = givenum("Enter the unit of item", 1, Type = int)
+    price = available_items[item]
     
     return {
         "Item":item, 
